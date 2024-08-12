@@ -1,0 +1,120 @@
+button {
+    border: none;
+    cursor: pointer;
+    img {
+        height: 30px;
+        width: 30px;
+    }
+}
+    
+.post {
+    width: 500px;
+    margin-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgb(50, 50, 50);
+}
+
+.info-head {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 7px;
+    div {gap: 7px;}
+}
+.post-pp {
+    height: 35px;
+    width: 35px;
+    margin-right: 4px;
+    img {
+        border-radius: 50%;
+        border: 1px solid rgb(50, 50, 50);
+        height: 35px;
+        width: 35px;
+    }
+}
+.info-head-top {
+    display: flex;
+}
+.user-name-up {
+    font-weight: bold;
+}
+.point {
+    color: rgb(150, 150, 150);
+}
+.publish_date {
+    color: rgb(150, 150, 150);
+}
+.follow {
+    input {
+        color: rgb(56, 151, 241);
+        font-weight: bold;
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+    }
+}
+.follow:hover {
+    input {
+        color: rgb(216, 236, 255);
+    }
+}
+
+.go-to-post{
+    margin-left: auto;
+}
+
+.pic {
+    border: 1px solid rgb(50, 50, 50);
+    border-radius: 5px;
+    width: 100%;
+}
+
+
+.post-activies {
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+    * {
+        height: 30px;
+        width: 30px;
+    }
+}
+
+
+.like-count {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+.info-bottom {
+    margin-top: 15px;
+    display: flex;
+}
+.user-name-bottom {
+    font-weight: bold;
+    padding-right: 5px;
+}
+.verified {
+    margin-right: 10px;
+    height: 15px;
+    width: 15px;
+    img {
+        height: 15px;
+        width: 15px;
+    }
+}
+
+.comment-section {
+    margin-top: 15px;
+}
+.comment {
+    display: flex;
+}
+.comment-count {
+    margin-top: 15px;
+    a {
+        color: rgb(150, 150, 150);
+    }
+}

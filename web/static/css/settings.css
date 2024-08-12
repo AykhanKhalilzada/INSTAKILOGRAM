@@ -1,0 +1,60 @@
+.container1 {
+    margin-left: 600px;
+    display: flex;
+}
+
+.sidebar {
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    border-right: 1px solid rgb(255, 255, 255);
+    margin-right: 100px;
+}
+
+.tab-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.tab-header span {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.tab {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.tab a {
+    display: block;
+    font-size: 16px;
+    color: rgb(56, 151, 240);
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.tab a:hover {
+    background-color: rgb(40, 40, 40);
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(56, 151, 240);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+button:hover {
+    background-color: rgb(53, 120, 229);
+}

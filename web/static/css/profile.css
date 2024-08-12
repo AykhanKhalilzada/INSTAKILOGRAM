@@ -1,0 +1,244 @@
+.container {
+    margin-left: 650px;
+    margin-top: 50px;
+}
+
+
+.info {
+    display: flex;
+    padding: 75px;
+    padding-top: 0px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgb(38, 38, 38);
+    * {
+        align-items: baseline;
+    }
+}
+
+
+.pp {
+    height: 150px;
+    width: 150px;
+    border: 1px solid rgb(38, 38, 38);
+    border-radius: 50%;
+    img {
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+    }
+}
+.user-info {
+    margin-left: 75px;
+    border-bottom: 1px;
+    border-color: rgb(38, 38, 38);
+}
+
+
+
+.user-info-top {
+    display: flex;
+    margin-bottom: 30px;
+}
+.profile-name {
+    display: flex;
+    gap: 7px;
+    margin-right: auto;
+}
+.username {
+    font-size: 20px;
+}
+.profile-name-verified {
+    height: 15px;
+    width: 20px;
+    img {
+        height: 100%;
+    }
+}
+
+.buttons {
+    display: flex;
+}
+
+/*  */
+.button {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.button input[type="submit"],
+.button button,
+.button.edit-profile input[type="button"],
+.button.edit-profile a {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.button.follow .ajax-button-following-profile,
+.button.following .ajax-button-following-profile,
+.button.message input[type="submit"] {
+    width: 100px; /* Set a fixed width for consistency */
+    height: 30px;
+}
+
+.button.follow button, 
+.button.follow input[type="submit"] {
+    background-color: rgb(0, 149, 246);
+    color: rgb(255, 255, 255);
+}
+
+.button.follow button,
+.button.follow input[type="submit"]:hover {
+    background-color: rgb(0, 110, 184);
+}
+
+.button.following button,
+.button.following input[type="submit"] {
+    background-color: rgb(255, 255, 255);
+    color: rgb(38, 38, 38);
+    border: 1px solid rgb(219, 219, 219);
+}
+
+.button.following button,
+.button.following input[type="submit"]:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+.button.message input[type="submit"] {
+    background-color: transparent;
+    color: rgb(0, 149, 246);
+    border: 1px solid rgb(0, 149, 246);
+}
+
+.button.message input[type="submit"]:hover {
+    background-color: rgba(0, 149, 246, 0.1);
+}
+
+.button.edit-profile input[type="button"], .button.edit-profile a {
+    background-color: rgb(38, 38, 38);
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(219, 219, 219);
+}
+
+.button.edit-profile input[type="button"]:hover, .button.edit-profile a:hover {
+    background-color: rgb(0, 0, 0);
+}
+/*  */
+
+.following_infos {
+    margin-bottom: 30px;
+    display: flex;
+    gap: 60px;
+}
+.following_info {
+    display: flex;
+    gap: 5px;
+    a {
+        display: flex;
+        gap: 5px;
+    }
+}
+.number {
+    font-size: 18px;
+    font-weight: 600;
+}
+.info-name {
+    font-size: 18px;
+}
+
+
+.name {
+    font-size: 15px;
+}
+.bio {
+    font-size: 13px;
+}
+
+.post-tag-section {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+.post-tag, .post-tag-current {
+    padding: 20px;
+    display: flex;
+    gap: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(100, 100, 100);
+}
+.post-tag-current {
+    border-top: 1px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+}
+
+
+.posts {
+    width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+.post {
+    flex: 0 1 calc(33.33% - 20px);
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    * {
+        background: rgba(0, 0, 0, 0);
+    }
+}
+
+.post img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+.post:hover img, .small-info:hover + img {
+    filter: brightness(50%);
+    z-index: 0;
+}
+.post:hover .small-info {
+    z-index: 1;
+}
+.small-info {
+    display: flex;
+    position: absolute;
+    top: 42%;
+    width: 100%;
+    justify-content: center;
+    z-index: -1;
+    gap: 5px;
+}
+.small-info {
+    img {
+        height: 20px;
+        width: 21px;
+    }
+    span {
+        font-size: 24px;
+        margin: 12px;
+        margin-left: 0px;
+    }
+}
+
+.no-posts {
+    width: 100%;
+    text-align: center;
+    margin: 50px 0;
+    margin-top: 150px;
+    font-weight: 900;
+    font-size: 25px;
+}

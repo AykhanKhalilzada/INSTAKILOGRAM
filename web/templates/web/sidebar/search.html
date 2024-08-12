@@ -1,0 +1,54 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block link_css %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    {% if is_search_page %}
+    <div class="search-bar">
+        <form action="{% url 'web:search' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="searched_user" placeholder="Search...">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+    {% endif %}
+
+    {% if searched %}
+    <div class="rows">
+        {% for result_user in results %}
+        <a href="{{ result_user.get_absolute_url }}">
+            <div class="row">
+                <div class="result-pp">
+                    <img src="{{ result_user.profile_image.url }}" alt="result_user">
+                </div>
+                <div class="result-info">
+                    <div class="result-info-top">
+                        {{ result_user.username }}
+                        {% if result_user.is_verified %}
+                        <div class="verified"><img src="{% static 'img/verified.png' %}" alt="Verified"></div>
+                        {% endif %}
+                    </div>
+                    {% if result_user.name %}
+                    <div class="result-info-bottom">
+                        {{ result_user.name }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </a>
+        {% empty %}
+        <div class="message">
+            <span>Not Found</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

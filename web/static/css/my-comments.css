@@ -1,0 +1,66 @@
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.comment {
+    width: 100%;
+    margin-top: 10px;
+    color: rgb(234, 234, 234);
+    display: flex;
+    align-items: flex-start;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(38, 38, 38);
+    align-items: center;
+}
+
+.commenter-pp {
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+    border: 1px solid rgb(38, 38, 38);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.commenter-pp img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.comment-date {
+    font-size: 12px;
+    color: rgb(142, 142, 142);
+    text-align: center;
+    margin-top: 5px;
+    margin-left: 50px;
+}
+
+.comment-post {
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgb(40, 40, 40);
+    border: 1px solid rgb;
+    margin-left: 20px;
+    img {
+        height: 91%;
+        width: 100%;
+        object-fit: contain;
+    }
+}
+
+.ajax-commment-delete-button {
+    margin-left: 25px;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+.ajax-commment-delete-button:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 0, 0);
+}

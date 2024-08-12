@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site_name }}</title>
+    <link rel="stylesheet" href="{% static 'css/login_logout.css' %}">
+    <link rel="icon" href="{% static 'img/logo.jpg' %}">
+</head>
+<body>
+    <div class="form-box">
+        <img src="{% static 'img/home-screen-logo.png' %}" class="logo">
+        <span>Login</span>
+
+        <form action="{% url 'web:register' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="email" placeholder="Email" required>
+            <input type="password" name="password1" placeholder="Password" required>
+            <input type="password" name="password2" placeholder="Confirm Password" required>
+            <input type="submit" value="Login">
+        </form>
+        
+        <a href="{% url 'web:login' %}">Already have an account? Login</a>
+    </div>
+</body>
+</html>

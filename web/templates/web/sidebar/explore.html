@@ -1,0 +1,28 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block link_css %}
+<link rel="stylesheet" href="{% static 'css/explore.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container2">
+    <div class="posts">
+        {% for post in posts %}
+        <div class="post">
+            <a href="{{ post.get_absolute_url }}">
+                <img src="{{ post.post.url }}" alt="{{ post.get_name }}">
+                <div class="small-info">
+                    <img src="{% static 'icons/like.png' %}" alt="Like">
+                    <span>{{ post.likes_count }}</span>
+                    <img src="{% static 'icons/comment.png' %}" alt="Like">
+                    <span>{{ post.comments.count }}</span>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block link_css %}
+<link rel="stylesheet" href="{% static 'css/post-on-home.css' %}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="posts">
+        {% for post in posts %}
+        
+        <div class="post">
+
+            <div class="info-head">
+                <div class="post-pp"><a href="{{ post.publisher.get_absolute_url }}"><img src="{{ post.publisher.profile_image.url }}" alt="PP"></a></div>
+                
+                <div>
+                    <div style="display: flex;">
+                        <div class="user-name-up"><a href="{{ post.publisher.get_absolute_url }}">{{ post.publisher.username }}</a></div>
+                    
+                        {% if post.publisher.is_verified %}
+                        <div class="verified" style="margin-right: 0px;"><img src="{% static 'img/verified.png' %}" alt="Verified"></div>
+                        {% endif %}
+                        <div class="point">•</div>
+                        <div class="publish_date">{{ post.publish_date|calculate_time_passed }}</div>
+
+                        <!-- {% if not post.publisher|user_is_followed:user and post.publisher != request.user %}
+                        <div class="point">•</div>
+                        <div class="follow">
+                            <div class="button follow">
+                                <button class="ajax-button-following-profile" type="submit" following_id="{{ userprofile.pk }}">Follow</button>
+                            </div>
+                        </div>
+                        {% endif %} -->
+                    </div>
+                    {% if post.location %}
+                    <div style="font-weight: bold; font-size: 12px;">{{ post.location }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="go-to-post"><a href="{{ post.get_absolute_url }}">•••</a></div>
+            </div>
+
+            <img class="pic" src="{{ post.post.url }}">
+
+            <div class="post-activies">
+                {% if post|user_is_liked:user %}
+                <div class="like">
+                    <button class="ajax-like-button" type="submit" post_id="{{ post.pk }}"><img src="{% static 'icons/liked.png' %}" alt="Liked"></button>
+                </div>
+                {% else %}
+                <div class="like">
+                    <button class="ajax-like-button" type="submit" post_id="{{ post.pk }}"><img src="{% static 'icons/like.png' %}" alt="Like"></button>
+                </div>
+                {% endif %}
+
+                <a href="{{ post.get_absolute_url }}">
+                    <img src="{% static 'icons/comment.png' %}" alt="Comment">
+                </a>
+                
+                <button value="Share" style="margin-right: auto;">
+                    <img src="{% static 'icons/share.png' %}" alt="Share">
+                </button>
+                
+                {% if post|user_is_saved:user %}
+                <div class="save">
+                    <button class="ajax-save-button" type="submit" post_id="{{ post.pk }}">
+                        <img src="{% static 'icons/saved.png' %}" alt="Saved">
+                    </button>
+                </div>
+                {% else %}
+                <div class="save">
+                    <button class="ajax-save-button" type="submit" post_id="{{ post.pk }}">
+                        <img src="{% static 'icons/save.png' %}" alt="Save">
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+
+            {% if post.likes.count %}
+            <div class="like-count" likecount="{{ post.likes.count }}">{{ post.likes.count }} like{{ post.likes.count|pluralize }}</div>
+            {% endif %}
+
+            {% if post.caption %}
+            <div class="info-bottom">
+                <a class="user-name-bottom" href="{{ post.publisher.get_absolute_url }}">{{ post.publisher.username }}</a>
+                
+                {% if post.publisher.is_verified %}
+                <a class="verified" href="{{ post.publisher.get_absolute_url }}"><img src="{% static 'img/verified.png' %}" alt="Verified"></a>
+                {% endif %}
+                
+                <div class="text">{{ post.caption }}</div>
+            </div>
+            {% endif %}
+            
+            {% if post.comments.count %}
+            <div class="comment-section">
+                <div class="comment-count">
+                    <a href="{{ post.get_absolute_url }}">View all {{ post.comments.count }} comment{{ post.comments.count|pluralize }}</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        {% empty %}
+        <div>
+            <div class="message" style="margin: 200px; margin-bottom: 0px;">
+                <span>There isn't any posts</span>
+            </div>
+            <div class="message" style="margin: auto;">
+                <span>Go follow someone to see some post on home page</span>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+<script src="{% static 'js/like-save-ajax.js' %}"></script>
+{% endblock %}

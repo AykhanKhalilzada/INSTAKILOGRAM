@@ -1,0 +1,167 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block link_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="info">
+        <div class="pp">
+            <img src="{{ userprofile.profile_image.url }}" alt="{{ userprofile.get_name }}'s Profile">
+        </div>
+        <div class="user-info">
+            <div class="user-info-top">
+                <div class="profile-name">
+                    <div class="username">{{ userprofile.username }}</div>
+                    {% if userprofile.is_verified %}
+                    <div class="profile-name-verified">
+                        <img src="{% static 'img/verified.png' %}" alt="verified">
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="buttons">
+                    {% if user != userprofile %}
+                    {% if userprofile|user_is_followed:request.user %}
+                    <div class="button following">
+                        <button class="ajax-button-following-profile" type="submit" following_id="{{ userprofile.pk }}">Following</button>
+                    </div>
+                    {% else %}
+                    <div class="button follow">
+                        <button class="ajax-button-following-profile" type="submit" following_id="{{ userprofile.pk }}">Follow</button>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="button message">
+                        <input type="submit" value="Message">
+                    </div>
+                    {% else %}
+                    <div class="button edit-profile">
+                        <a href="{% url 'web:settings' %}">Edit Profile</a>
+                    </div>
+                    <div class="button edit-profile">
+                        <input type="button" id="shareProfileButton" value="Share Profile" data-url="{{ userprofile.get_absolute_url }}" data-port-url="{{url_header}}">
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="following_infos">
+                <div class="following_info">
+                    <div class="number">{{ userprofile.posts.count }}</div>
+                    <div class="info-name">posts</div>
+                </div>
+                <div class="following_info">
+                    <a href="{% url 'web:user-followers' slug=userprofile.slug %}">
+                        <div class="number ajax">{{ userprofile.followers.count }}</div>
+                        <div class="info-name">followers</div>
+                    </a>
+                </div>
+                <div class="following_info">
+                    <a href="{% url 'web:user-following' slug=userprofile.slug %}">
+                        <div class="number">{{ userprofile.following.count }}</div>
+                        <div class="info-name">following</div>
+                    </a>
+                </div>
+            </div>
+            <div class="user-info-bottom">
+                {% if userprofile.name %}
+                <div class="name">{{ userprofile.name }}</div>
+                {% endif %}
+                {% if userprofile.bio %}
+                <div class="bio">{{ userprofile.bio }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if userprofile.is_public_account or userprofile|user_is_followed:request.user %}
+    <div class="post-tag-section">
+        {% if is_tagged_page %}
+            <a href="{{ userprofile.get_absolute_url }}">
+                <div class="post-tag">POSTS</div>
+            </a>
+            <a href="{% url 'web:user-profile-tagged' slug=userprofile.slug %}">
+                <div class="post-tag-current">TAGGED</div>
+            </a>
+            {% if userprofile.pk == request.user.pk %}
+            <a href="{% url 'web:user-profile-saved' slug=userprofile.slug %}">
+                <div class="post-tag">SAVED</div>
+            </a>
+            {% endif %}
+        {% elif is_saved_page %}
+            <a href="{{ userprofile.get_absolute_url }}">
+                <div class="post-tag">POSTS</div>
+            </a>
+            <a href="{% url 'web:user-profile-tagged' slug=userprofile.slug %}">
+                <div class="post-tag">TAGGED</div>
+            </a>
+            {% if userprofile.pk == request.user.pk %}
+            <a href="{% url 'web:user-profile-saved' slug=userprofile.slug %}">
+                <div class="post-tag-current">SAVED</div>
+            </a>
+            {% endif %}
+
+        {% else %}
+            <a href="{{ userprofile.get_absolute_url }}">
+                <div class="post-tag-current">POSTS</div>
+            </a>
+            <a href="{% url 'web:user-profile-tagged' slug=userprofile.slug %}">
+                <div class="post-tag">TAGGED</div>
+            </a>
+            {% if userprofile.pk == request.user.pk %}
+            <a href="{% url 'web:user-profile-saved' slug=userprofile.slug %}">
+                <div class="post-tag">SAVED</div>
+            </a>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <div class="posts">
+        {% if is_saved_page %}
+            {% if userprofile.pk == request.user.pk %}
+                {% for post in posts %}
+                    <div class="post">
+                        <a href="{{ post.get_absolute_url }}">
+                            <img src="{{ post.post.url }}" alt="{{ post.get_name }}">
+                            <div class="small-info">
+                                <img src="{% static 'icons/like-mini.png' %}" alt="Like">
+                                <span>{{ post.likes_count }}</span>
+                                <img src="{% static 'icons/comment-mini.png' %}" alt="Comment">
+                                <span>{{ post.comments.count }}</span>
+                            </div>
+                        </a>
+                    </div>
+                {% empty %}
+                    <div class="no-posts">No Posts Yet</div>
+                {% endfor %}
+            {% else %}
+            <div class="no-posts">Forbidden</div>
+            {% endif %}
+        {% else %}
+            {% for post in posts %}
+                <div class="post">
+                    <a href="{{ post.get_absolute_url }}">
+                        <img src="{{ post.post.url }}" alt="{{ post.get_name }}">
+                        <div class="small-info">
+                            <img src="{% static 'icons/like-mini.png' %}" alt="Like">
+                            <span>{{ post.likes_count }}</span>
+                            <img src="{% static 'icons/comment-mini.png' %}" alt="Like">
+                            <span>{{ post.comments.count }}</span>
+                        </div>
+                    </a>
+                </div>
+                {% empty %}
+                <div class="no-posts">No Posts Yet</div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    {% else %}
+    <div class="no-posts">This account is private</div>
+    {% endif %}
+</div>
+
+<script src="{% static 'js/copy-follow-ajax.js' %}"></script>
+{% endblock %}

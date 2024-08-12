@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    background: linear-gradient(150deg, rgb(10, 10, 10), rgb(28, 28, 28));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    color: rgb(255, 255, 255);
+}
+
+.form-box {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5%;
+    padding-top: 3%;
+    border-radius: 2%;
+    box-shadow: 0 3% 10% rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    width: 30%;
+    max-width: 350px;
+    min-width: 250px;
+}
+
+.form-box .logo {
+    width: 100%;
+    margin-bottom: 10%;
+}
+
+.form-box span {
+    font-size: 150%;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5%;
+}
+
+.form-box form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-box input[type="text"],
+.form-box input[type="email"],
+.form-box input[type="password"] {
+    padding: 3%;
+    margin: 3% 0;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgb(255, 255, 255);
+    outline: none;
+    font-size: 100%;
+}
+
+.form-box input[type="submit"] {
+    padding: 3%;
+    margin: 5% 0;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(to right, rgb(15, 12, 41), rgb(48, 43, 99), rgb(36, 36, 62));
+    color: rgb(255, 255, 255);
+    font-size: 110%;
+    cursor: pointer;
+    transition: 2s;
+}
+
+.form-box input[type="submit"]:hover {
+    background: rgb(15, 12, 41);
+    background: -webkit-linear-gradient(to right, rgb(48, 43, 99), rgb(36, 36, 62));
+    background: linear-gradient(to right, rgb(48, 43, 99), rgb(36, 36, 62));
+    transform: scale(1.05);
+}
+
+.form-box a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 90%;
+    margin-top: 5%;
+    display: block;
+}
+
+.form-box a:hover {
+    text-decoration: underline;
+}

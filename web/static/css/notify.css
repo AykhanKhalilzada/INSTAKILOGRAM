@@ -1,0 +1,68 @@
+.header {
+    margin: 25px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.notify {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #dbdbdb;
+    width: 520px;
+}
+
+.notify-pic img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.notify-text {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #262626;
+    gap: 5px;
+}
+
+.notify-button-pic,
+.notify-button-follow,
+.notify-button-following {
+    margin-left: auto;
+}
+
+.notify-button-pic {
+    max-height: 40px;
+    max-width: 40px;
+    object-fit: cover;
+}
+
+.notify-button-pic img {
+    width: 100%;
+    height: 100%;
+    border: rgb(255, 255, 255) 1px solid;
+    border-radius: 4px;
+}
+
+.notify-button-follow button,
+.notify-button-following button {
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: rgb(0, 149, 246);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.notify-button-following button {
+    background-color: rgb(255, 255, 255);
+    color: rgb(38, 38, 38);
+}

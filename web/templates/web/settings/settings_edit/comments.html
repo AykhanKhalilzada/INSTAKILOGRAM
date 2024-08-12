@@ -1,0 +1,42 @@
+{% extends 'web/settings/base-settings.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block link_css %}
+<link rel="stylesheet" href="{% static 'css/settings.css' %}">
+<link rel="stylesheet" href="{% static 'css/my-comments.css' %}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
+{% block settings_content %}
+<div class="my-comments">
+    <h2>My Comments</h2>
+    {% for comment in comments %}
+    <div class="comment">
+        <div class="commenter-pp">
+            <img src="{{ comment.user.profile_image.url }}" alt="{{ comment.user.username }}">
+        </div>
+        <div class="comment-context">
+            <div class="commenter-username">
+                <a href="{{ comment.user.get_absolute_url }}">{{ comment.user.username }}</a>
+            </div>
+            <div class="comment-text">
+                {{ comment.text }}
+            </div>
+        </div>
+        <div class="comment-date">
+            {{ comment.publish_date|calculate_time_passed }}
+        </div>
+        <div class="comment-post">
+            <a href="{{ comment.post.get_absolute_url }}">
+                <img src="{{ comment.post.post.url }}" alt="{{ comment.post }}">
+            </a>
+        </div>
+        <form action="{% url 'web:comment' %}"></form>
+        <button class="ajax-commment-delete-button" type="submit" deletion_token="{{ comment.pk }}">Delete</button>
+    </div>
+    {% empty %}
+    <div class="mesage">No comments</div>
+    {% endfor %}
+</div>
+{% endblock %}

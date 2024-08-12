@@ -1,0 +1,88 @@
+{% load static %}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site_name }}</title>
+    {% block link_css %}
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="icon" href="{% static 'img/logo.jpg' %}">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="home-screen-logo">
+            <a href="{% url 'web:home' %}">
+                <img src="{% static 'img/home-screen-logo.png' %}">
+            </a>
+        </div>
+
+        <div class="nav-bar-activities">
+            <a href="{% url 'web:home' %}">
+                <img src="{% static 'icons/home.png' %}">
+                <span>Home</span>
+            </a>
+        </div>
+        <div class="nav-bar-activities">
+            <a href="{% url 'web:search' %}">
+                <img src="{% static 'icons/search.png' %}" alt="search">
+                <span>Search</span>
+            </a>
+        </div>
+        <div class="nav-bar-activities">
+            <a href="{% url 'web:explore' %}">
+                <img src="{% static 'icons/explore.png' %}" alt="explore">
+                <span>Explore</span>
+            </a>
+        </div>
+        <div class="nav-bar-activities">
+            <a href="{% url 'web:create-post' %}">
+                <img src="{% static 'icons/create-post.png' %}" alt="create">
+                <span>Create</span>
+            </a>
+        </div>
+        <div class="nav-bar-activities">
+            <a href="{% url 'web:notify' %}">
+                <img src="{% static 'icons/like2.png' %}" alt="create">
+                <span>Notify</span>
+            </a>
+        </div>
+
+        <div class="nav-bar-activities" style="margin-bottom: 350px;">
+            <a href="{{ user.get_absolute_url }}">
+                <img class="nav-bar-activities-pp" src="{{ user.profile_image.url }}">
+                <span>Profile</span>
+            </a>
+        </div>
+
+        
+        {% if user.is_staff %}
+        <div class="nav-bar-activities">
+            <a href="/settings/admin/">
+                <img src="{% static 'icons/admin.png' %}" alt="admin">
+                <span>Admin</span>
+            </a>
+        </div>
+        {% else %}
+        <div class="nav-bar-activities">
+            <a href="#">
+                <img src="{% static 'icons/contact.png' %}" alt="admin">
+                <span>Contact</span>
+            </a>
+        </div>
+        {% endif %}
+        <div class="nav-bar-activities">
+            <a href="{% url 'web:settings' %}">
+                <img src="{% static 'icons/settings.png' %}" alt="settings">
+                <span>Settings</span>
+            </a>
+        </div>
+    </nav>
+
+    {% block content %}
+
+    {% endblock %}
+
+</body>

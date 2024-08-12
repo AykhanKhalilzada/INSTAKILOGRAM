@@ -1,0 +1,50 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block link_css %}
+<link rel="stylesheet" href="{% static 'css/settings.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container1">
+    <div class="sidebar">
+        <div class="tab-header">
+            <span>HOW YOU USE INSTAKILOGRAM</span>
+            <div class="tab">
+                <a href="{% url 'web:settings' %}">Edit Profile</a>
+            </div>
+            <div class="tab">
+                <a href="{% url 'web:settings-user' %}">Edit User Details</a>
+            </div>
+        </div>
+        <div class="tab-header">
+            <span>HOW YOU INTERACTED WITH OTHERS</span>
+            <div class="tab">
+                <a href="{% url 'web:settings-likes' %}">Likes</a>
+            </div>
+            <div class="tab">
+                <a href="{% url 'web:user-profile-saved' slug=request.user.slug %}">Saves</a>
+            </div>
+            <div class="tab">
+                <a href="{% url 'web:settings-comments' %}">Comments</a>
+            </div>
+        </div>
+        <div class="tab-header">
+            <span>IM BORED LETS LOG OUT</span>
+            <div class="tab">
+                <form action="{% url 'web:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Switch Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="essential">
+    {% block settings_content %}
+        
+    {% endblock %}
+    </div>
+</div>
+{% endblock %}

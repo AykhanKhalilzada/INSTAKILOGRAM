@@ -1,0 +1,67 @@
+/* Container for the new post form */
+.new-post {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgb(34, 34, 34); /* Dark background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgb(50, 50, 50); /* Darker border */
+}
+
+/* Label styling */
+.new-post .label {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+/*  */
+.new-post form {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-post form input[type="file"] {
+    display: block;
+    margin: 10px 0;
+    border: 1px solid rgb(50, 50, 50);
+    border-radius: 4px;
+    background-color: rgb(50, 50, 50);
+    cursor: pointer;
+}
+
+/* Form input styling */
+.new-post form input[type="text"],
+.new-post form input[type="url"] {
+    width: 100%;
+    padding: 12px 20px;
+    padding-right: 200px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid rgb(50, 50, 50); /* Dark border */
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: rgb(50, 50, 50); /* Dark input background */
+    color: rgb(255, 255, 255); /* Light text color */
+}
+
+/* Submit button styling */
+.new-post form input[type="submit"] {
+    width: 100%;
+    background-color: rgb(56, 151, 241); /* Blue background */
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Hover effect for the submit button */
+.new-post form input[type="submit"]:hover {
+    background-color: rgb(45, 130, 207); /* Darker blue on hover */
+}

@@ -1,0 +1,14 @@
+{% extends 'web/settings/base-settings.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block link_css %}
+<link rel="stylesheet" href="{% static 'css/settings.css' %}">
+<link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
+{% endblock %}
+
+{% block settings_content %}
+<div class="edit-profile-container">
+    <h2>Edit User Details</h2>
+</div>
+{% endblock %}

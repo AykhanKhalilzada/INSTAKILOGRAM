@@ -1,0 +1,46 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block link_css %}
+<link rel="stylesheet" href="{% static 'css/notify.css' %}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="header">NOTIFICATIONS</div>
+    {% for notify in notifications %}
+    <div class="notify">
+        <div class="notify-pic">
+            <a href="{{ notify.committer.get_absolute_url }}"><img src="{{ notify.committer.profile_image.url }}" alt="{{ notify.committer }}"></a>
+        </div>
+    
+        <div class="notify-text">
+            <div>{{ notify.text }}</div>
+            <div style="color: rgb(150, 150, 150);">•</div>
+            <div style="color: rgb(150, 150, 150);">{{ notify.creation_date|calculate_time_passed }}</div>
+        </div>
+    
+        {% if notify.post %}
+            <div class="notify-button-pic">
+                <a href="{{ notify.post.get_absolute_url }}"><img src="{{ notify.post.post.url }}" alt="{{ notify.post }}"></a>
+            </div>
+        {% else %}
+            {% if notify.committer|user_is_followed:user %}
+                <div class="notify-button-follow">
+                    <button>Follow Back</button>
+                </div>
+            {% else %}
+                <div class="notify-button-following">
+                    <button>Following</button>
+                </div>
+            {% endif %}
+        {% endif %}
+
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock %}

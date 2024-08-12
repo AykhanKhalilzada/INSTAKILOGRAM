@@ -1,0 +1,67 @@
+.edit-profile-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Form group styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid rgb(40, 40, 40);
+    border-radius: 5px;
+    background-color: rgb(40, 40, 40);
+    color: rgb(255, 255, 255);
+    box-sizing: border-box;
+}
+input[type="file"] {
+    cursor: pointer;
+    padding: 5px;
+}
+
+textarea {
+    resize: none;
+    height: 100px;
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-save {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-color: #3897f0;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn-save:hover {
+    background-color: #3578e5;
+}

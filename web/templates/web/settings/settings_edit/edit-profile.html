@@ -1,0 +1,40 @@
+{% extends 'web/settings/base-settings.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block link_css %}
+<link rel="stylesheet" href="{% static 'css/settings.css' %}">
+<link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
+{% endblock %}
+
+{% block settings_content %}
+<div class="edit-profile-container">
+    <h2>Edit Profile</h2>
+    <form action="{% url 'web:settings' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_username">Name</label>
+            {% if request.user.name != None %}
+            <input type="text" name="name" value="{{ request.user.name }}">
+            {% else %}
+            <input type="text" name="name">
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="id_bio">Bio</label>
+            {% if request.user.bio != None %}
+            <textarea name="bio">{{ request.user.bio }}</textarea>
+            {% else %}
+            <textarea name="bio"></textarea>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="id_profile_image">Profile Image</label>
+            <input type="file" name="profile_image">
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn-save">Save Changes</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

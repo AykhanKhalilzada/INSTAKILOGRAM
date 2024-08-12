@@ -1,0 +1,231 @@
+/* Container */
+.container {
+    margin-left: 600px;
+    margin-top: 25px;
+    max-width: 600px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    color: rgb(234, 234, 234);
+}
+
+/* Post */
+.post {
+    border: 1px solid rgb(50, 50, 50);
+    border-radius: 1%;
+    display: flex;
+    align-items: center;
+}
+
+.post .content {
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.post {
+    width: 800px;
+    height: 600px;
+}
+
+.post .content img {
+    width: 100%;
+    height: 100%;
+}
+
+/* Post Info */
+.post-info {
+    width: 40%;
+    height: 100%;
+}
+
+.post-info-top {
+    display: flex;
+    align-items: center;
+    color: rgb(234, 234, 234);
+    padding: 10px;
+}
+
+.publisher-pp, .commenter-pp {
+    height: 30px;
+    width: 30px;
+}
+
+.publisher-pp a > img, .commenter-pp img {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid rgb(38, 38, 38);
+    border-radius: 50%;
+}
+
+.publisher-username {
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    color: rgb(234, 234, 234);
+}
+
+.publisher-verified img {
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
+
+.post-follow {
+    display: flex;
+}
+
+.point {
+    margin: 0 5px;
+    color: rgb(153, 153, 153);
+}
+.ajax-follow-button {
+    display: inline-block;
+    border: none;
+    background: none;
+    color: rgb(56, 151, 240);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.delete-button {
+    margin-left: auto;
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+    /* padding: 5px; */
+    /* border-radius: 5px; */
+}
+.delete-button button {
+    border: none;
+    cursor: pointer;
+}
+.delete-button:hover button {
+    color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 0, 0); */
+}
+
+
+/* Caption and Comments */
+.comments {
+    padding: 10px;
+    border-top: 1px solid rgb(58, 58, 58);
+    border-bottom: 1px solid rgb(58, 58, 58);
+}
+
+.comment {
+    width: 100%;
+    margin-top: 10px;
+    color: rgb(234, 234, 234);
+    display: flex;
+    align-items: flex-start;
+    padding-top: 10px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.commenter-pp {
+    margin-right: 10px;
+    border: 1px solid rgb(38, 38, 38);
+    border-radius: 50%;
+    justify-content: center;
+    max-width: fit-content;
+}
+
+.mesage {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 150px;
+    margin-bottom: 150px;
+}
+
+.commenter-username {
+    font-weight: bold;
+    font-size: 14px;
+    color: rgb(234, 234, 234);
+}
+
+.comment-text {
+    margin-top: 2px;
+    font-size: 14px;
+    color: rgb(234, 234, 234);
+}
+
+/* Post Activies */
+.post-info-bottom {
+    padding: 15px;
+}
+.post-activies {
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+}
+.post-activies img {
+    height: 30px;
+    width: 30px;
+}
+.post-activies button {
+    border: none;
+    cursor: pointer;
+    img {
+        height: 30px;
+        width: 30px;
+    }
+}
+.post-stats {
+    padding: 10px 0;
+    color: #262626;
+}
+
+.post-likes {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.post-date {
+    color: #8e8e8e;
+}
+
+/* Add Comment */
+.add-comment {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: rgb(234, 234, 234);
+}
+
+.add-comment img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.add-comment form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.add-comment input[type="text"] {
+    border: none;
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 3px;
+    color: rgb(234, 234, 234);
+}
+
+.add-comment input[type="submit"] {
+    border: none;
+    background: none;
+    color: rgb(56, 151, 240);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* General Styles */
+
+input:focus {
+    outline: none;
+}

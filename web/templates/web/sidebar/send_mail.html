@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Mail</title>
+</head>
+<body>
+    <form action="{% url 'web:sendmail' %}" method="POST">
+        {% csrf_token %}
+        <input type="email" name="email" placeholder="To Email" required>
+        <input type="text" name="subject" placeholder="Enter Subject" required>
+        <input type="text" name="message" placeholder="Enter Your Message" required>
+        <input type="image" name="profile_picture" placeholder="Set Your Profile Picture">
+        <input type="submit" value="Send">
+    </form>
+</body>
+</html>
+
+<!-- Register -->
+<input type="image" name="profile_image" placeholder="Set Your Profile Picture">

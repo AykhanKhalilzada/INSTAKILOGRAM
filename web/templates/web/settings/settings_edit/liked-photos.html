@@ -1,0 +1,24 @@
+{% extends 'web/settings/base-settings.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block link_css %}
+<link rel="stylesheet" href="{% static 'css/settings.css' %}">
+<link rel="stylesheet" href="{% static 'css/liked-photos.css' %}">
+{% endblock %}
+
+{% block settings_content %}
+<div class="posts">
+    {% for post in posts %}
+    <div class="post">
+        <a href="{{ post.get_absolute_url }}">
+            <img src="{{ post.post.url }}" alt="{{ post.get_name }}">
+        </a>
+    </div>
+    {% empty %}
+    <div class="message">
+        <span>No posts yet.</span>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

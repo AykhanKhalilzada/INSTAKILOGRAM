@@ -1,0 +1,151 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block link_css %}
+<link rel="stylesheet" href="{% static 'css/post.css' %}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="post">
+        
+        <div class="content">
+            <img src="{{ post.post.url }}" alt="{{ post.publisher.username }}">
+        </div>
+        
+        <div class="post-info">
+            
+            <div class="post-info-top">
+                <div class="publisher-pp">
+                    <a href="{{ post.publisher.get_absolute_url }}">
+                        <img src="{{ post.publisher.profile_image.url }}" alt="{{ post.publisher.username }}">
+                    </a>
+                </div>
+                <div class="publisher-username">
+                    <a href="{{ post.publisher.get_absolute_url }}">
+                        {{ post.publisher.username }}
+                    </a>
+                </div>
+                {% if post.publisher.is_verified %}
+                <div class="publisher-verified"><img src="{% static 'img/verified.png' %}" alt="salam"></div>
+                {% endif %}
+                
+                {% if not post.publisher|user_is_followed:user and post.publisher != request.user %}
+                <div class="post-follow">
+                    <div class="point">•</div>
+                    <button class="ajax-follow-button" type="submit" following_id="{{ post.publisher.pk }}">Follow</button>
+                </div>
+                {% endif %}
+
+                {% if post.publisher == request.user %}
+                <div class="delete-button">
+                    <form action="{% url 'web:create-post' %}" method="post">
+                        <input type="hidden" name="deletion_token" value="{{ post.pk }}">
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="comments">
+                {% if post.caption %}
+                <div class="comment">
+                    <div class="commenter-pp">
+                        <img src="{{ post.publisher.profile_image.url }}" alt="{{ post.publisher.username }}">
+                    </div>
+                    <div class="comment-context">
+                        <div class="commenter-username">
+                            <a href="{{ post.publisher.get_absolute_url }}">{{ post.publisher.username }}</a>
+                        </div>
+                        <div class="comment-text">
+                            {{ post.caption }}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% for comment in post.get_comments %}
+                <div class="comment">
+                    <div class="commenter-pp">
+                        <img src="{{ comment.user.profile_image.url }}" alt="{{ comment.user.username }}">
+                    </div>
+                    <div class="comment-context">
+                        <div class="commenter-username">
+                            <a href="{{ comment.user.get_absolute_url }}">{{ comment.user.username }}</a>
+                        </div>
+                        <div class="comment-text">
+                            {{ comment.text }}
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="mesage">No comments</div>
+                {% endfor %}
+            </div>
+
+
+            <div class="post-info-bottom">
+                <div class="post-activies">
+                    {% if post|user_is_liked:user %}
+                    <div class="like">
+                        <button class="ajax-like-button" type="submit" post_id="{{ post.pk }}"><img src="{% static 'icons/liked.png' %}" alt="Liked"></button>
+                    </div>
+                    {% else %}
+                    <div class="like">
+                        <button class="ajax-like-button" type="submit" post_id="{{ post.pk }}"><img src="{% static 'icons/like.png' %}" alt="Like"></button>
+                    </div>
+                    {% endif %}
+    
+                    <button>
+                        <img src="{% static 'icons/comment.png' %}" alt="Comment">
+                    </button>
+    
+                    <button value="Share" style="margin-right: auto;"><img src="{% static 'icons/share.png' %}" alt="Share"></button>
+    
+                    {% if post|user_is_saved:user %}
+                    <div class="save">
+                        <button class="ajax-save-button" type="submit" post_id="{{ post.pk }}">
+                            <img src="{% static 'icons/saved.png' %}" alt="Saved">
+                        </button>
+                    </div>
+                    {% else %}
+                    <div class="save">
+                        <button class="ajax-save-button" type="submit" post_id="{{ post.pk }}">
+                            <img src="{% static 'icons/save.png' %}" alt="Save">
+                        </button>
+                    </div>
+                    {% endif %}
+    
+                </div>
+                <div class="post-stats">
+                    {% if post.likes.count %}
+                    <div class="post-likes">{{ post.likes.count }} like{{ post.likes.count|pluralize }}</div>
+                    {% endif %}
+                    <div class="post-date">{{ post.publish_date|calculate_time_passed:True }}</div>
+                </div>
+            </div>
+
+
+            <div class="add-comment">
+                <div class="commenter-pp">
+                    <img src="{{ request.user.profile_image.url }}" alt="{{ request.user.username }}">
+                </div>
+                <form action="{% url 'web:comment' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value="{{ post.pk }}">
+                    <input type="hidden" name="redirect_url" value="{{ request.build_absolute_uri }}">
+                    {% if post.get_comments %}
+                    <input type="text" name="comment" placeholder="Add a comment...">
+                    {% else %}
+                    <input type="text" name="comment" placeholder="Be the first to comment...">
+                    {% endif %}
+                    <input type="submit" value="Post">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/like-save-ajax.js' %}"></script>
+{% endblock %}
